@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(208, 210, 237);
+    margin: 0; 
+    padding: 0;
+    min-height: 100vh; 
+    position: relative;
+}
+
+form {
+    width: max-content; 
+    margin: 0 auto; 
+    text-align: right;
+}
+
+.titulos {
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline-block;
+    width: 160px;
+    margin-right: 10px;
+}
+
+input {
+    width: 250px; 
+    padding: 5px;
+    margin: 8px 0;
+    border: 1px solid;
+    box-sizing: border-box;
+    background-color: rgb(202, 137, 207);
+}
+
+.boton-centrado {
+    margin-top: 15px;
+    margin-right: 90px; 
+}
+
+
+.resultado {
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+.Estudiantes {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-weight: bold;
+}
