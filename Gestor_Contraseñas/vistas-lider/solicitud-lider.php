@@ -3,7 +3,6 @@ session_start();
 require_once '../conexion.php';
 $mensaje = "";
 
-// Redirigir si no hay sesión activa
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
     exit();
@@ -13,9 +12,8 @@ $mi_id = $_SESSION['usuario_id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario_destino = trim($_POST['usuario']);
-    $rol_destino = intval($_POST['rol']); // 1 para Admin, 2 para Lider
+    $rol_destino = intval($_POST['rol']);
 
-    // 1. Buscar el ID del usuario destino
     $stmt = mysqli_prepare($conexion, "SELECT id FROM usuarios WHERE nombre_usuario = ? AND rol_id = ?");
     mysqli_stmt_bind_param($stmt, "si", $usuario_destino, $rol_destino);
     mysqli_stmt_execute($stmt);
@@ -24,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($fila = mysqli_fetch_assoc($resultado)) {
         $destinatario_id = $fila['id'];
 
-        // 2. Insertar la solicitud
         $stmt_insert = mysqli_prepare($conexion, "INSERT INTO solicitudes (remitente_id, destinatario_id) VALUES (?, ?)");
         mysqli_stmt_bind_param($stmt_insert, "ii", $mi_id, $destinatario_id);
         
@@ -46,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../estilos/styles-solicitud.css">
-    <title>HatStall Security</title>
+    <title>Solicitud</title>
 </head>
 <body>
 
