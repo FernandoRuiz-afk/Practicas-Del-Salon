@@ -2,7 +2,6 @@
 session_start();
 require_once '../conexion.php';
 
-// Redirigir si no hay sesión activa
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../login.php");
     exit();
@@ -10,7 +9,6 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $mi_id = $_SESSION['usuario_id'];
 
-// 1. Buscar la información del grupo donde el usuario actual es el líder
 $query_grupo = mysqli_prepare($conexion, "SELECT g.id AS id_grupo, g.nombre_grupo, c.codigo AS credencial, u.nombre_usuario AS lider 
     FROM grupos g 
     JOIN credenciales c ON g.credencial_grupo_id = c.id 
@@ -21,15 +19,12 @@ mysqli_stmt_execute($query_grupo);
 $resultado_grupo = mysqli_stmt_get_result($query_grupo);
 $datos_grupo = mysqli_fetch_assoc($resultado_grupo);
 
-// Inicializar arrays por si acaso el usuario no tiene grupo asignado
 $empleados = [];
 $admins = [];
 
-// Si se encontró el grupo del líder, extraemos su ID dinámicamente
 if ($datos_grupo) {
     $id_grupo = $datos_grupo['id_grupo'];
 
-    // 2. Consultar los empleados que pertenecen exclusivamente a este grupo
     $query_emp = mysqli_prepare($conexion, "SELECT nombre_usuario FROM usuarios WHERE grupo_id = ? AND rol_id = 3");
     mysqli_stmt_bind_param($query_emp, "i", $id_grupo);
     mysqli_stmt_execute($query_emp);
@@ -37,7 +32,6 @@ if ($datos_grupo) {
     $empleados = mysqli_fetch_all($resultado_emp, MYSQLI_ASSOC);
 }
 
-// 3. Consultar los administradores (esto aplica para todos los grupos)
 $query_admins = mysqli_query($conexion, "SELECT nombre_usuario FROM usuarios WHERE rol_id = 1");
 $admins = mysqli_fetch_all($query_admins, MYSQLI_ASSOC);
 ?>
