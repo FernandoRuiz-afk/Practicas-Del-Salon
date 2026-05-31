@@ -21,23 +21,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($user && password_verify($pass, $user['contrasena'])) {
 
-                // Guardamos los datos en la sesión
+
                 $_SESSION['usuario_id'] = $user['id'];
                 $_SESSION['nombre_usuario'] = $user['nombre_usuario'];
                 $_SESSION['rol_id'] = $user['rol_id'];
                 
-                // === REDIRECCIÓN DINÁMICA SEGÚN EL ROL ===
+
                 if ($user['rol_id'] == 1) {
-                    // Rol 1: Administrador
+
                     header("Location: inicio.php");
                 } elseif ($user['rol_id'] == 2) {
-                    // Rol 2: Líder de grupo
+
                     header("Location: vistas-lider/inicio-lider.php");
                 } elseif ($user['rol_id'] == 3) {
-                    // Rol 3: Empleado
+
                     header("Location: vistas-usuario/inicio-usuario.php");
                 } else {
-                    // Por seguridad, si el rol no es válido, lo devuelve al index
+
                     header("Location: index.php");
                 }
                 exit();
