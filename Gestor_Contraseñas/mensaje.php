@@ -2,7 +2,6 @@
 session_start();
 require_once 'conexion.php';
 
-// Redirigir si no hay sesión activa
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
     exit();
@@ -10,15 +9,13 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $mi_id = $_SESSION['usuario_id'];
 
-// Procesar acciones de Aceptar o Rechazar
 if (isset($_GET['accion']) && isset($_GET['id_solicitud'])) {
     $id_solicitud = intval($_GET['id_solicitud']);
     $accion = $_GET['accion'];
 
     if ($accion == 'aceptar') {
         
-        // 1. BUSCAR LA CREDENCIAL DEL ADMINISTRADOR ACTUAL
-        $mi_credencial = "Credencial no encontrada"; // Valor por defecto en caso de error
+        $mi_credencial = "Credencial no encontrada";
         
         $query_credencial = "SELECT c.codigo 
                              FROM usuarios u 
@@ -30,12 +27,10 @@ if (isset($_GET['accion']) && isset($_GET['id_solicitud'])) {
         mysqli_stmt_execute($stmt_cred);
         $resultado_cred = mysqli_stmt_get_result($stmt_cred);
         
-        // Si encontramos la credencial, la guardamos en la variable
         if ($fila_cred = mysqli_fetch_assoc($resultado_cred)) {
             $mi_credencial = $fila_cred['codigo'];
         }
 
-        // 2. ACTUALIZAR LA SOLICITUD ENTREGANDO LA CREDENCIAL REAL
         $stmt = mysqli_prepare($conexion, "UPDATE solicitudes SET estado = 'Aceptada', credencial_entregada = ? WHERE id = ? AND destinatario_id = ?");
         mysqli_stmt_bind_param($stmt, "sii", $mi_credencial, $id_solicitud, $mi_id);
         mysqli_stmt_execute($stmt);
@@ -46,12 +41,10 @@ if (isset($_GET['accion']) && isset($_GET['id_solicitud'])) {
         mysqli_stmt_execute($stmt);
     }
     
-    // Recargar la página para limpiar la URL
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 
-// Consultar solicitudes entrantes pendientes
 $query_recibidas = "SELECT s.id, u.nombre_usuario, r.nombre_rol 
                     FROM solicitudes s 
                     JOIN usuarios u ON s.remitente_id = u.id 
