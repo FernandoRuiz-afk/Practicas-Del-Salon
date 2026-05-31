@@ -1,0 +1,102 @@
+body{
+    background-color: rgb(253, 241, 226);
+}
+
+.navbar{
+    background-color: rgb(171, 146, 191);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.d-inline-block{
+    width: 50px;
+    height: 30px;
+}
+
+.navbar-brand{
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(76, 66, 99);
+}
+
+.nav-link{
+    margin-left: 10px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: rgb(76, 66, 99);
+}
+
+.card{
+    background: 0%;
+}
+
+.card-body{
+    margin-top: 40px;
+    margin-left: 320px;
+    margin-right: 320px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    padding-left: 5px;
+    padding-right: 10px;
+    color: rgb(253, 241, 226);
+    background: rgb(101, 90, 124);
+    border: 1px solid;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-title{
+    font-size: 40px;
+    text-align: center;
+}
+
+.card-text{
+    text-align: center;
+    font-size: 22px;
+}
+
+label{
+    padding-bottom: 5px;
+}
+
+input{
+    background-color: rgb(171, 146, 191);
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+    padding-right: 190px;
+}
+
+.form-select{
+    background-color: rgb(171, 146, 191);
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 155px;
+
+    width: 300px;
+}
+
+.btn{
+    margin-top: 30px;
+}
+
+.enviar{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 50px;
+    background: rgb(171, 146, 191);
+    color: rgb(76, 66, 99);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cancelar{
+    background: rgb(171, 146, 191);
+    color: rgb(76, 66, 99);
+    font-size: 20px;
+    font-weight: bold;
+}

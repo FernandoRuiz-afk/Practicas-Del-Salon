@@ -1,0 +1,64 @@
+body{
+    background-color: rgb(253, 241, 226);
+}
+
+.navbar{
+    background-color: rgb(171, 146, 191);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.d-inline-block{
+    width: 50px;
+    height: 30px;
+}
+
+.navbar-brand{
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(76, 66, 99);
+}
+
+.card{
+    background: 0%;
+}
+
+.card-body{
+    margin-top: 100px;
+    margin-left: 320px;
+    margin-right: 320px;
+    margin-bottom: 150px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    padding-left: 5px;
+    padding-right: 10px;
+    color: rgb(253, 241, 226);
+    background: rgb(101, 90, 124);
+    border: 1px solid;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-text{
+    
+    font-size: 21px;
+}
+
+.btn{
+    margin-left: 10px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: rgb(76, 66, 99);
+}
+
+.dropdown-menu{
+    border: 1px solid;
+    background-color: rgb(171, 146, 191);
+}
+
+.nav-link{
+    margin-left: 10px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: rgb(76, 66, 99);
+}
+

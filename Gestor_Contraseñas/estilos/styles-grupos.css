@@ -1,0 +1,72 @@
+body{
+    background-color: rgb(253, 241, 226);
+}
+
+.navbar{
+    background-color: rgb(171, 146, 191);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.d-inline-block{
+    width: 50px;
+    height: 30px;
+}
+
+.navbar-brand{
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(76, 66, 99);
+}
+
+.btn{
+    margin-left: 10px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: rgb(76, 66, 99);
+}
+
+.dropdown-menu{
+    border: 1px solid;
+    background-color: rgb(171, 146, 191);
+}
+
+.nav-link{
+    margin-left: 10px;
+    padding-top: 15px;
+    font-size: 25px;
+    color: rgb(76, 66, 99);
+}
+
+.card{
+    
+    margin-top: 30px;
+    margin-left: 23px;
+    margin-right: 20px;
+    margin-bottom: 150px;
+    background: rgb(101, 90, 124);
+    border: 2px solid;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-header{
+    font-weight: 500;
+    color: rgb(76, 66, 99);
+    font-size: 20px;
+    background-color: rgb(171, 146, 191);
+}
+
+.list-group-item{
+    color: rgb(253, 241, 226);
+    font-size: 16px;
+    background-color: rgb(101, 90, 124);
+}
+
+.cerrar{
+    margin-top: 30px;
+    margin-left: 50px;
+    padding: 10px;
+    background: rgb(171, 146, 191);
+    color: rgb(76, 66, 99);
+    font-size: 20px;
+    font-weight: bold;
+}
