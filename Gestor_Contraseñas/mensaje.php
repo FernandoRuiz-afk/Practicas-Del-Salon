@@ -64,7 +64,7 @@ $resultado_recibidas = mysqli_stmt_get_result($stmt_rec);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="estilos/styles-mensaje.css">
-    <title>Empleados</title>
+    <title>Solicitudes</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">
