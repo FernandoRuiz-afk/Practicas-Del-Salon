@@ -2,7 +2,6 @@
 session_start();
 require_once '../conexion.php';
 
-// Redirigir si no hay sesión activa
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../login.php");
     exit();
@@ -10,17 +9,14 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $mi_id = $_SESSION['usuario_id'];
 
-// Procesar acciones de Aceptar o Rechazar
 if (isset($_GET['accion']) && isset($_GET['id_solicitud'])) {
     $id_solicitud = intval($_GET['id_solicitud']);
     $accion = $_GET['accion'];
 
     if ($accion == 'aceptar') {
-        
-       // 1. BUSCAR LA CREDENCIAL DEL LÍDER DE GRUPO ACTUAL
+
         $mi_credencial = "Credencial no encontrada"; 
-        
-        // Buscamos en la tabla grupos donde este usuario es el líder, y cruzamos con credenciales
+
         $query_credencial = "SELECT c.codigo 
                              FROM grupos g 
                              JOIN credenciales c ON g.credencial_grupo_id = c.id 
@@ -35,7 +31,6 @@ if (isset($_GET['accion']) && isset($_GET['id_solicitud'])) {
             $mi_credencial = $fila_cred['codigo'];
         }
 
-        // 2. ACTUALIZAR LA SOLICITUD ENTREGANDO LA CREDENCIAL
         $stmt = mysqli_prepare($conexion, "UPDATE solicitudes SET estado = 'Aceptada', credencial_entregada = ? WHERE id = ? AND destinatario_id = ?");
         mysqli_stmt_bind_param($stmt, "sii", $mi_credencial, $id_solicitud, $mi_id);
         mysqli_stmt_execute($stmt);
@@ -45,13 +40,11 @@ if (isset($_GET['accion']) && isset($_GET['id_solicitud'])) {
         mysqli_stmt_bind_param($stmt, "ii", $id_solicitud, $mi_id);
         mysqli_stmt_execute($stmt);
     }
-    
-    // Recargar la página para limpiar la URL
+
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 
-// 1. Consultar solicitudes RECIBIDAS (pendientes de aceptar/rechazar)
 $query_recibidas = "SELECT s.id, u.nombre_usuario, r.nombre_rol 
                     FROM solicitudes s 
                     JOIN usuarios u ON s.remitente_id = u.id 
@@ -62,7 +55,6 @@ mysqli_stmt_bind_param($stmt_rec, "i", $mi_id);
 mysqli_stmt_execute($stmt_rec);
 $resultado_recibidas = mysqli_stmt_get_result($stmt_rec);
 
-// 2. Consultar solicitudes ENVIADAS por este líder
 $query_enviadas = "SELECT s.id, u.nombre_usuario AS destinatario, r.nombre_rol, s.estado, s.credencial_entregada 
                    FROM solicitudes s 
                    JOIN usuarios u ON s.destinatario_id = u.id 
